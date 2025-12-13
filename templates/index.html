@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ads Recommendation System</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            width: 50%;
+            margin: auto;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+        .ad-card {
+            background: #fff;
+            padding: 15px;
+            margin-top: 10px;
+            border-left: 5px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Ads Recommendation System</h2>
+    <p>Enter User ID to get recommendations:</p>
+
+    <input type="number" id="user_id" placeholder="Enter User ID">
+    <button onclick="getRecommendations()">Get Recommendations</button>
+
+    <div id="results"></div>
+</div>
+
+<script>
+function getRecommendations() {
+    const userId = document.getElementById("user_id").value;
+    
+    fetch(`/recommend/${userId}?k=5`)
+        .then(response => response.json())
+        .then(data => {
+            let html = "";
+            data.forEach(ad => {
+                html += `
+                    <div class='ad-card'>
+                        <h3>Ad ID: ${ad.ad_id}</h3>
+                        <p><b>Category:</b> ${ad.category}</p>
+                        <p><b>Keywords:</b> ${ad.keywords}</p>
+                        <p><b>Score:</b> ${ad.score}</p>
+                    </div>
+                `;
+            });
+            document.getElementById("results").innerHTML = html;
+        });
+}
+</script>
+
+</body>
+</html>

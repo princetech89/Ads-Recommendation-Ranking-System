@@ -1,0 +1,6 @@
+ad_id,category,keywords,cost,advertiser_id
+101,Technology,"laptop,smartphone,gadgets",2.5,501
+102,Fashion,"clothes,beauty,makeup",1.2,502
+103,Sports,"gym,fitness,yoga",1.0,503
+104,Entertainment,"music,movies,shows",1.8,504
+105,Finance,"stocks,trading,investment",3.0,505
